@@ -21,6 +21,7 @@ export default () => {
         },
       });
       setBusiness(response.data.businesses);
+      setError(null);
     } catch (err) {
       //   console.log(err);
       setError("Something went wrong");

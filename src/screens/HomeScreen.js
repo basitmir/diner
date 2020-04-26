@@ -1,32 +1,47 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import SearchBar from "./SearchBar";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import SearchBar from "../components/SearchBar";
 import useRestaurant from "../../hooks/restaurantHook";
-import GradientHeader from "react-native-gradient-header";
-
-const HomeScreen = () => {
+import ResList from "../components/ResList";
+const HomeScreen = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [business, errorMsg, searchApi] = useRestaurant();
+  // console.log(business);
   const handelTerm = (val) => {
     setSearchTerm(val);
     console.log(searchTerm);
   };
+  const filterResultsByPrice = (price) => {
+    return business.filter((result) => result.price === price);
+  };
   return (
-    <View>
-      <GradientHeader
-        title="Title"
-        subtitle="Have a nice day Kura"
-        gradientColors={["#00416A", "#E4E5E6"]}
-        imageSource={require("../../assets/splash.png")}
-      />
+    <>
       <SearchBar
         term={searchTerm}
         changeTerm={handelTerm}
         onTermSubmit={() => searchApi(searchTerm)}
       />
       {errorMsg ? <Text>{errorMsg}</Text> : null}
-      <Text>We found {business.length} results</Text>
-    </View>
+      {/* <Text style={styles.text}>We found {business.length} results</Text> */}
+      <ScrollView>
+        <ResList
+          navigation={navigation}
+          results={filterResultsByPrice("$")}
+          title="Cost Effective"
+        />
+        <ResList
+          navigation={navigation}
+          results={filterResultsByPrice("$$")}
+          title="Bit Pricier"
+        />
+        <ResList
+          navigation={navigation}
+          results={filterResultsByPrice("$$$")}
+          title="Big Spender"
+        />
+      </ScrollView>
+    </>
   );
 };
+const styles = StyleSheet.create({});
 export default HomeScreen;
