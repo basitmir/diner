@@ -7,7 +7,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import ResDetails from "./ResDetails";
-const ResList = ({ title, results, navigation }) => {
+import { useNavigation } from "@react-navigation/native";
+const ResList = ({ title, results }) => {
+  const navigation = useNavigation();
+  if (!results.length) {
+    return null;
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.listStyle}>{title}</Text>
@@ -18,7 +23,13 @@ const ResList = ({ title, results, navigation }) => {
         data={results}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => navigation.navigate("MoreImages")}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("MoreImages", {
+                  id: item.id,
+                })
+              }
+            >
               <ResDetails result={item} />
             </TouchableOpacity>
           );
