@@ -27,6 +27,7 @@ const ResList = ({ title, results }) => {
               onPress={() =>
                 navigation.navigate("MoreImages", {
                   id: item.id,
+                  name: item.name,
                 })
               }
             >
