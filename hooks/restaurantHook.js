@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text } from "react-native";
 import yelp from "../api/yelp";
 export default () => {
+  // console.log(data);
   const [business, setBusiness] = useState([]);
   const [errorMsg, setError] = useState(null);
 
