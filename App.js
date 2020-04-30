@@ -40,7 +40,7 @@ const App = () => {
                   animation="rotate"
                   easing="linear"
                   iterationCount="infinite"
-                  iterationDelay={100}
+                  iterationDelay={3000}
                 >
                   <FontAwesome
                     style={{ marginHorizontal: 15, color: "#d1b66b" }}

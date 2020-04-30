@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import { View, Text, StyleSheet, FlatList, Image, Linking } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import BoxDetails from "../components/BoxDetails";
+import Address from "../components/Address";
+import KnowMore from "../components/KnowMore";
 import yelp from "../../api/yelp";
+import * as Animatable from "react-native-animatable";
 const MoreImages = ({ route }) => {
   const [result, setResult] = useState(null);
   const { id } = route.params;
@@ -23,15 +26,15 @@ const MoreImages = ({ route }) => {
         // keyExtractor={(result.categories.title) => result.categories.title}
         data={result.categories}
         renderItems={({ item }) => {
-          console.log("items");
+          // console.log("items");
           return <Text>{item.title}</Text>;
         }}
       />
     );
-    console.log(fav);
+    // console.log(fav);
   }
   return (
-    <View>
+    <>
       {/* {result.categories.map((category, id) => console.log(category.title))} */}
       {/* {console.log(fav)} */}
       <SliderBox
@@ -45,14 +48,18 @@ const MoreImages = ({ route }) => {
         dotColor="#d1b66b"
         inactiveDotColor="white"
       />
-      <Text
+      <Animatable.Text
+        animation="pulse"
+        easing="linear"
+        iterationCount="infinite"
+        iterationDelay={3000}
         style={[
           styles.check,
           result.is_closed ? styles.closeColor : styles.openColor,
         ]}
       >
         {result.is_closed ? "Closed" : "Opened"}
-      </Text>
+      </Animatable.Text>
       <View style={styles.three}>
         <BoxDetails
           title="RATING"
@@ -76,13 +83,15 @@ const MoreImages = ({ route }) => {
           weight="bold"
         />
       </View>
-    </View>
+      <Address result={result} />
+      <KnowMore url={result.url} />
+    </>
   );
 };
 const styles = StyleSheet.create({
   three: {
     flexDirection: "row",
-    marginTop: 10,
+    marginTop: 4,
     paddingVertical: 10,
     justifyContent: "space-around",
   },

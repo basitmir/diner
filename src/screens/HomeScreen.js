@@ -9,7 +9,7 @@ const HomeScreen = () => {
   // console.log(business);
   const handelTerm = (val) => {
     setSearchTerm(val);
-    console.log(searchTerm);
+    // console.log(searchTerm);
   };
   const filterResultsByPrice = (price) => {
     return business.filter((result) => result.price === price);
