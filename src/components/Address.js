@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   addressView: {
-    alignSelf: "center",
+    textAlign: "center",
+    // alignSelf: "center",
     fontSize: 30,
     color: "#d1b66b",
   },

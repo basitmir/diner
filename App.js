@@ -11,14 +11,21 @@ const Stack = createStackNavigator();
 
 const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [location, setLocation] = useState("United States");
   const closeModal = (val) => {
-    console.log(!val);
     setModalVisible(!val);
+  };
+  const newLocation = (val) => {
+    setLocation(val);
   };
   return (
     <>
       {modalVisible ? (
-        <ModalView open={modalVisible} closeModal={closeModal} />
+        <ModalView
+          open={modalVisible}
+          closeModal={closeModal}
+          newLocation={newLocation}
+        />
       ) : null}
       <NavigationContainer>
         <Stack.Navigator
@@ -37,9 +44,10 @@ const App = () => {
         >
           <Stack.Screen
             name="Home"
-            component={HomeScreen}
+            // component={HomeScreen}
+            initialParams={{ location: location }}
             options={{
-              title: "Restaurant",
+              title: "DINER",
               headerRight: () => (
                 <TouchableOpacity
                   onPress={() =>
@@ -52,7 +60,7 @@ const App = () => {
                     animation="rotate"
                     easing="linear"
                     iterationCount="infinite"
-                    iterationDelay={10000}
+                    iterationDelay={6000}
                   >
                     <FontAwesome
                       style={{ marginHorizontal: 15, color: "#d1b66b" }}
@@ -63,7 +71,9 @@ const App = () => {
                 </TouchableOpacity>
               ),
             }}
-          />
+          >
+            {(props) => <HomeScreen {...props} location={location} />}
+          </Stack.Screen>
           {/* <Stack.Screen name="Search" component={Search} /> */}
           <Stack.Screen
             name="MoreImages"

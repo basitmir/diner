@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, Image, Linking } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  Linking,
+  ScrollView,
+} from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import BoxDetails from "../components/BoxDetails";
 import Address from "../components/Address";
@@ -37,54 +45,57 @@ const MoreImages = ({ route }) => {
     <>
       {/* {result.categories.map((category, id) => console.log(category.title))} */}
       {/* {console.log(fav)} */}
-      <SliderBox
-        images={result.photos}
-        sliderBoxHeight={300}
-        autoplay
-        circleLoop
-        ImageComponentStyle={{ borderRadius: 8, width: "98%", marginTop: 5 }}
-        imageLoadingColor="#d1b66b"
-        // onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
-        dotColor="#d1b66b"
-        inactiveDotColor="white"
-      />
-      <Animatable.Text
-        animation="pulse"
-        easing="linear"
-        iterationCount="infinite"
-        iterationDelay={3000}
-        style={[
-          styles.check,
-          result.is_closed ? styles.closeColor : styles.openColor,
-        ]}
-      >
-        {result.is_closed ? "Closed" : "Opened"}
-      </Animatable.Text>
-      <View style={styles.three}>
-        <BoxDetails
-          title="RATING"
-          icon="star"
-          info={[{ title: result.rating.toString() }]}
-          size={32}
-          weight="normal"
+      <ScrollView>
+        <SliderBox
+          images={result.photos}
+          sliderBoxHeight={300}
+          autoplay
+          circleLoop
+          ImageComponentStyle={{ borderRadius: 8, width: "98%", marginTop: 5 }}
+          imageLoadingColor="#d1b66b"
+          // onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
+          dotColor="#d1b66b"
+          inactiveDotColor="white"
         />
-        <BoxDetails
-          title="REVIEWS"
-          icon="thumbs-up"
-          info={[{ title: result.review_count.toString() }]}
-          size={32}
-          weight="normal"
-        />
-        <BoxDetails
-          title="POPULAR"
-          icon="magic"
-          info={result.categories}
-          size={11}
-          weight="bold"
-        />
-      </View>
-      <Address result={result} />
-      <KnowMore url={result.url} />
+
+        <Animatable.Text
+          animation="pulse"
+          easing="linear"
+          iterationCount="infinite"
+          // iterationDelay={3000}
+          style={[
+            styles.check,
+            result.is_closed ? styles.closeColor : styles.openColor,
+          ]}
+        >
+          {result.is_closed ? "Closed" : "Opened"}
+        </Animatable.Text>
+        <View style={styles.three}>
+          <BoxDetails
+            title="RATING"
+            icon="star"
+            info={[{ title: result.rating.toString() }]}
+            size={32}
+            weight="normal"
+          />
+          <BoxDetails
+            title="REVIEWS"
+            icon="thumbs-up"
+            info={[{ title: result.review_count.toString() }]}
+            size={32}
+            weight="normal"
+          />
+          <BoxDetails
+            title="POPULAR"
+            icon="magic"
+            info={result.categories}
+            size={11}
+            weight="bold"
+          />
+        </View>
+        <Address result={result} />
+        <KnowMore url={result.url} />
+      </ScrollView>
     </>
   );
 };

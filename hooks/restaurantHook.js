@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Text } from "react-native";
 import yelp from "../api/yelp";
-export default () => {
-  // console.log(data);
+export default (location) => {
+  console.log(location + "hook");
   const [business, setBusiness] = useState([]);
   const [errorMsg, setError] = useState(null);
 
   useEffect(() => {
     searchApi("Pasta");
-  }, []);
+  }, [location]);
+
   const handelSubmit = () => {
     console.log("searchTerm submitted");
   };
@@ -18,7 +19,7 @@ export default () => {
         params: {
           limit: 50,
           term: searchTerm,
-          location: "United States",
+          location: location,
         },
       });
       setBusiness(response.data.businesses);

@@ -3,13 +3,11 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useRestaurant from "../../hooks/restaurantHook";
 import ResList from "../components/ResList";
-const HomeScreen = () => {
+const HomeScreen = ({ route, location }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [business, errorMsg, searchApi] = useRestaurant();
-  // console.log(business);
+  const [business, errorMsg, searchApi] = useRestaurant(location);
   const handelTerm = (val) => {
     setSearchTerm(val);
-    // console.log(searchTerm);
   };
   const filterResultsByPrice = (price) => {
     return business.filter((result) => result.price === price);
