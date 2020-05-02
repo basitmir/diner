@@ -1,28 +1,26 @@
 {
   "expo": {
-    "name": "food",
-    "slug": "food",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "name": "Diner",
+    "slug": "Diner",
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#f2ead3"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.yourcompany.yourappname",
+      "versionCode": 1
     }
   }
 }

@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import MoreImages from "./src/screens/MoreImages";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import * as Animatable from "react-native-animatable";
 import ModalView from "./src/components/ModalView";
@@ -60,14 +60,32 @@ const App = () => {
                     animation="rotate"
                     easing="linear"
                     iterationCount="infinite"
-                    iterationDelay={6000}
+                    iterationDelay={4000}
                   >
                     <FontAwesome
-                      style={{ marginHorizontal: 15, color: "#d1b66b" }}
+                      style={{
+                        marginHorizontal: 15,
+                        color: "#d1b66b",
+                        marginTop: 8,
+                      }}
                       name="globe"
                       size={30}
                     />
                   </Animatable.View>
+                  <Text
+                    style={{
+                      marginRight: 2,
+                      fontSize: 10,
+                      textAlign: "center",
+                      color: "#b3adad",
+                      fontWeight: "bold",
+                      // borderColor: "red",
+                      // borderWidth: 1,
+                      // marginTop: 10,
+                    }}
+                  >
+                    {location}
+                  </Text>
                 </TouchableOpacity>
               ),
             }}

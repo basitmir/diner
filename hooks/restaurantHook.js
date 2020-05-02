@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text } from "react-native";
 import yelp from "../api/yelp";
 export default (location) => {
-  console.log(location + "hook");
+  // console.log(location + "hook");
   const [business, setBusiness] = useState([]);
   const [errorMsg, setError] = useState(null);
 
