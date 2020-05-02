@@ -6,7 +6,10 @@ FRONT END : React-Native <br>
 
 <p align="center">
 <img src ="assets/Screen1.jpg" height="500">
+  <span width="30"></span>
 <img src ="assets/Screen2.jpg" height="500"><br>
+  
 <img src ="assets/Screen3.jpg" height="500">
+<span width="30"></span>
 <img src ="assets/Screen4.jpg" height="500">
 </p>
