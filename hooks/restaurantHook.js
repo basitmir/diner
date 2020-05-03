@@ -23,7 +23,11 @@ export default (location) => {
         },
       });
       setBusiness(response.data.businesses);
-      setError(null);
+      if (response.data.businesses.length === 0) {
+        setError("No Results Found");
+      } else {
+        setError(null);
+      }
     } catch (err) {
       //   console.log(err);
       setError("Something went wrong");
