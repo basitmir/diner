@@ -5,16 +5,18 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import ResDetails from "./ResDetails";
 import { useNavigation } from "@react-navigation/native";
+
 const ResList = ({ title, results }) => {
   const navigation = useNavigation();
   if (!results.length) {
     return null;
   }
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <Text style={styles.listStyle}>{title}</Text>
       <FlatList
         showsHorizontalScrollIndicator={false}
@@ -41,7 +43,7 @@ const ResList = ({ title, results }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 14,
+    marginBottom: 7,
   },
   listStyle: {
     fontWeight: "bold",

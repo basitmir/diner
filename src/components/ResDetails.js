@@ -1,11 +1,31 @@
 import React from "react";
-import { View, Text, FlatList, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 import { Rating } from "react-native-ratings";
+const tablet = Dimensions.get("window").height;
 const ResDetails = ({ result }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       {/* <Text style={styles.text}>{result.title}</Text> */}
-      <Image style={styles.image} source={{ uri: result.image_url }} />
+      <Image
+        style={[
+          styles.image,
+          {
+            height:
+              tablet <= 800
+                ? Dimensions.get("window").height / 6 - 3
+                : Dimensions.get("window").height / 4 - 15,
+            width: Dimensions.get("window").width / 2 + 70,
+          },
+        ]}
+        source={{ uri: result.image_url }}
+      />
       <Text style={styles.name}>{result.name}</Text>
       <View style={styles.innerContainer}>
         <Rating
@@ -33,6 +53,7 @@ const ResDetails = ({ result }) => {
 const styles = StyleSheet.create({
   container: {
     marginLeft: 10,
+    justifyContent: "space-around",
   },
   innerContainer: {
     flexDirection: "row",
@@ -45,14 +66,12 @@ const styles = StyleSheet.create({
     marginVertical: 3,
   },
   image: {
-    height: 120,
-    width: 250,
+    // height: 120,
+    // width: 250,
     borderRadius: 4,
   },
   text: {
     fontWeight: "bold",
-    borderWidth: 1,
-    borderColor: "red",
   },
 });
 

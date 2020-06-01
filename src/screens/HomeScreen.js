@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useRestaurant from "../../hooks/restaurantHook";
 import ResList from "../components/ResList";
@@ -44,7 +44,12 @@ const HomeScreen = ({ route, location }) => {
       ) : null}
       {/* <Text style={styles.text}>We found {business.length} results</Text> */}
       {business.length !== 0 ? (
-        <ScrollView>
+        <ScrollView
+          style={[
+            styles.scroll,
+            // { height: Dimensions.get("window").height / 4 + 3 },
+          ]}
+        >
           <ResList results={filterResultsByPrice(1)} title="Cost Effective" />
           <ResList results={filterResultsByPrice(2)} title="Bit Pricier" />
           <ResList results={filterResultsByPrice(3)} title="Big Spender" />
@@ -61,12 +66,20 @@ const styles = StyleSheet.create({
   main: {
     justifyContent: "center",
     height: "80%",
+    // borderColor: "red",
+    // borderWidth: 1,
+    flex: 1,
   },
   text: {
     fontSize: 30,
     color: "#d1b66b",
     textAlign: "center",
     fontWeight: "bold",
+  },
+  scroll: {
+    // borderColor: "red",
+    // borderWidth: 1,
+    // height: "20%",
   },
 });
 export default HomeScreen;
