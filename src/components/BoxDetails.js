@@ -1,10 +1,14 @@
 import React from "react";
 import { Text, StyleSheet, View, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-const BoxDetails = ({ title, icon, info, size, weight }) => {
+const BoxDetails = ({ title, icon, info, size, weight, tablet }) => {
   return (
     <View style={styles.boxContainer}>
-      <FontAwesome style={{ color: "#d1b66b" }} name={icon} size={50} />
+      <FontAwesome
+        style={{ color: "#d1b66b", alignSelf: "center" }}
+        name={icon}
+        size={tablet <= 408 ? 25 : 50}
+      />
       <View style={{ alignItems: "center" }}>
         <Text style={styles.box}>{title}</Text>
         <FlatList
@@ -32,7 +36,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontSize: 28,
     color: "#b3adad",
-    flexShrink: 1,
+    // flexShrink: 1,
   },
   boxContainer: {
     flexDirection: "row",
@@ -42,6 +46,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2ead3",
     paddingHorizontal: 8,
     paddingVertical: 12,
+    flex: 3,
+    marginRight: 6,
+    justifyContent: "center",
   },
   box: {
     // borderWidth: 1,

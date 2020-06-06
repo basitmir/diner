@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-const Address = ({ result }) => {
+const Address = ({ result, tablet, tabWidth }) => {
   return (
     <LinearGradient
       start={[0.9, 0.9]}
@@ -25,7 +25,13 @@ const Address = ({ result }) => {
         "#f2ead3",
       ]}
       //   location={[0.8, 0.5, 1.0, 0.3]}
-      style={styles.addressTopView}
+      style={[
+        styles.addressTopView,
+        {
+          paddingVertical:
+            tablet <= 862 ? 20 : Math.abs(tablet - tabWidth - 190),
+        },
+      ]}
     >
       <View>
         <Text style={styles.addressView}>{result.location.address1}</Text>

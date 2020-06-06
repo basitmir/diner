@@ -7,6 +7,8 @@ import {
   Image,
   Linking,
   ScrollView,
+  SafeAreaView,
+  Dimensions,
 } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import BoxDetails from "../components/BoxDetails";
@@ -17,6 +19,8 @@ import * as Animatable from "react-native-animatable";
 const MoreImages = ({ route }) => {
   const [result, setResult] = useState(null);
   const { id } = route.params;
+  const tablet = Dimensions.get("window").height;
+  const tabWidth = Dimensions.get("window").width;
   var fav = null;
   useEffect(() => {
     getResult(id);
@@ -45,10 +49,15 @@ const MoreImages = ({ route }) => {
     <>
       {/* {result.categories.map((category, id) => console.log(category.title))} */}
       {/* {console.log(fav)} */}
+      {/* <ScrollView> */}
       <ScrollView>
         <SliderBox
           images={result.photos}
-          sliderBoxHeight={300}
+          sliderBoxHeight={
+            tablet <= 800
+              ? parseInt(Dimensions.get("window").height / 2 - 50)
+              : parseInt(Dimensions.get("window").height / 2)
+          }
           autoplay
           circleLoop
           ImageComponentStyle={{ borderRadius: 8, width: "98%", marginTop: 5 }}
@@ -77,6 +86,7 @@ const MoreImages = ({ route }) => {
             info={[{ title: result.rating.toString() }]}
             size={32}
             weight="normal"
+            tablet={tabWidth}
           />
           <BoxDetails
             title="REVIEWS"
@@ -84,6 +94,7 @@ const MoreImages = ({ route }) => {
             info={[{ title: result.review_count.toString() }]}
             size={32}
             weight="normal"
+            tablet={tabWidth}
           />
           <BoxDetails
             title="POPULAR"
@@ -91,9 +102,10 @@ const MoreImages = ({ route }) => {
             info={result.categories}
             size={11}
             weight="bold"
+            tablet={tabWidth}
           />
         </View>
-        <Address result={result} />
+        <Address result={result} tablet={tablet} tabWidth={tabWidth} />
         <KnowMore url={result.url} />
       </ScrollView>
     </>
@@ -105,6 +117,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     paddingVertical: 10,
     justifyContent: "space-around",
+    marginHorizontal: 6,
   },
   image: {
     flex: 1,
